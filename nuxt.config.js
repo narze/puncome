@@ -61,6 +61,9 @@ export default {
   */
   build: {
   },
+  server: {
+    host: '0.0.0.0'
+  },
   serverMiddleware: [
     '~/api/index.js'
   ]
