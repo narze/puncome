@@ -1,21 +1,26 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
+      <!-- <Logo /> -->
       <h1 class="title">
-        puncome
+        Puncome
       </h1>
+
+      <div>
+        <textarea name="input" id="input" class="border" cols="50" rows="10"></textarea>
+      </div>
+
+      <div class="my-2">
+        <button id="check" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Check</button>
+      </div>
+
+      <div>
+        <textarea name="output" id="output" class="border" cols="50" rows="10"></textarea>
+      </div>
+
       <div class="links">
         <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
+          href="https://github.com/narze/puncome"
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"
