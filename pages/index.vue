@@ -7,15 +7,15 @@
       </h1>
 
       <div>
-        <textarea name="input" id="input" class="border" cols="50" rows="10"></textarea>
+        <textarea v-model="input" name="input" id="input" class="border" cols="50" rows="10"></textarea>
       </div>
 
       <div class="my-2">
-        <button id="check" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Check</button>
+        <button @click="check" id="check" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Check</button>
       </div>
 
       <div>
-        <textarea name="output" id="output" class="border" cols="50" rows="10"></textarea>
+        <textarea v-model="output" name="output" id="output" class="border" cols="50" rows="10"></textarea>
       </div>
 
       <div class="links">
@@ -35,7 +35,21 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return {
+      input: "",
+      output: "",
+    }
+  },
+  methods: {
+    async check() {
+      const result = await this.$axios.$get(`/api/wordcut?input=${this.input}`)
+      this.output = result.output
+      console.log(this.output)
+    }
+  }
+})
 </script>
 
 <style>

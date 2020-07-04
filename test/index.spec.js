@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import Index from '@/pages/index.vue'
+import flushPromises from 'flush-promises'
 
 describe('Index', () => {
   test('is a Vue instance', () => {
@@ -17,8 +18,12 @@ describe('Index', () => {
     expect(wrapper.html()).toContain("Puncome")
   })
 
-  test("cuts words", () => {
-    const wrapper = mount(Index)
+  test("cuts words", async () => {
+    const $axios = { $get: () => Promise.resolve({ output: 'ไก่|จิก|เด็ก|ตาย|บน|ปาก|โอ่ง' }) }
+    const wrapper = mount(Index, {
+      mocks: { $axios }
+    })
+
     const textArea = wrapper.find("textarea#input")
     expect(textArea.exists()).toBe(true)
 
@@ -28,7 +33,9 @@ describe('Index', () => {
     const button = wrapper.get("button#check")
     button.trigger("click")
 
+    await flushPromises()
+
     const output = wrapper.get("textarea#output")
-    expect(output.element.value).toBe("ไก่ จิก เด็ก ตาย บน ปาก โอ่ง")
+    expect(output.element.value).toBe("ไก่|จิก|เด็ก|ตาย|บน|ปาก|โอ่ง")
   })
 })
