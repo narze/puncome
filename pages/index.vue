@@ -7,7 +7,7 @@
       </h1>
 
       <div>
-        <textarea v-model="input" name="input" id="input" class="border" cols="50" rows="10"></textarea>
+        <textarea v-model="input" name="input" id="input" class="border p-4" cols="50" rows="10"></textarea>
       </div>
 
       <div class="my-2">
@@ -15,7 +15,7 @@
       </div>
 
       <div>
-        <textarea v-model="output" name="output" id="output" class="border" cols="50" rows="10"></textarea>
+        <textarea v-model="output" name="output" id="output" class="border p-4" cols="50" rows="10"></textarea>
       </div>
 
       <div class="links">
