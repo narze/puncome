@@ -62,7 +62,7 @@ export default {
   build: {
   },
   server: {
-    host: '0.0.0.0'
+    host: process.env.NODE_ENV === "production" ? '0.0.0.0' : undefined,
   },
   serverMiddleware: [
     '~/api/index.js'
