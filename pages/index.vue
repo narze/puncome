@@ -44,7 +44,8 @@ export default Vue.extend({
   },
   methods: {
     async check() {
-      const result = await this.$axios.$get(`/api/wordcut?input=${this.input}`)
+      const host = window.location.origin
+      const result = await this.$axios.$get(`${host}/api/wordcut?input=${this.input}`)
       this.output = result.output
       console.log(this.output)
     }
