@@ -38,7 +38,7 @@ import Vue from 'vue'
 export default Vue.extend({
   data() {
     return {
-      input: "",
+      input: "คุณสามารถอธิบายเรื่องยากด้วยคำที่ง่ายลงได้หรือไม่",
       output: "",
     }
   },
