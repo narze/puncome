@@ -21,7 +21,7 @@
       <div id="uncommonWords">{{ uncommonWords }}</div>
     </div>
 
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script type="application/javascript" async defer src="https://buttons.github.io/buttons.js"></scripta>
   </div>
 </template>
 
