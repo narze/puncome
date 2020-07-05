@@ -6,7 +6,7 @@
       </h1>
 
       <div class="mb-2">
-        <github-button href="https://github.com/narze/puncome" data-icon="octicon-star" data-show-count="true" aria-label="Star narze/puncome on GitHub">Star</github-button>
+        <a class="github-button" href="https://github.com/narze/puncome" data-icon="octicon-star" data-show-count="true" aria-label="Star narze/puncome on GitHub">Star</a>
       </div>
 
       <div>
@@ -20,18 +20,16 @@
       <div id="result">{{ resultMessage }}</div>
       <div id="uncommonWords">{{ uncommonWords }}</div>
     </div>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import words from "@/data/tnc-1k-wordlist"
-import GithubButton from "vue-github-button"
+import Vue from 'vue';
+import words from "@/data/tnc-1k-wordlist";
 
 export default Vue.extend({
-  components: {
-    GithubButton
-  },
   data() {
     return {
       input: [
