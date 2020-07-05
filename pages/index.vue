@@ -1,10 +1,13 @@
 <template>
   <div class="container">
     <div>
-      <!-- <Logo /> -->
-      <h1 class="title">
+      <h1 class="text-6xl">
         พันคำ
       </h1>
+
+      <div class="mb-2">
+        <github-button href="https://github.com/narze/puncome" data-icon="octicon-star" data-show-count="true" aria-label="Star narze/puncome on GitHub">Star</github-button>
+      </div>
 
       <div>
         <textarea v-model="input" name="input" id="input" class="border p-4" cols="50" rows="10"></textarea>
@@ -16,17 +19,6 @@
 
       <div id="result">{{ resultMessage }}</div>
       <div id="uncommonWords">{{ uncommonWords }}</div>
-
-      <div class="links">
-        <a
-          href="https://github.com/narze/puncome"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-blue"
-        >
-          GitHub
-        </a>
-      </div>
     </div>
   </div>
 </template>
@@ -34,8 +26,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import words from "@/data/tnc-1k-wordlist"
+import GithubButton from "vue-github-button"
 
 export default Vue.extend({
+  components: {
+    GithubButton
+  },
   data() {
     return {
       input: [

@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "flush-promises": "^1.0.2",
     "nuxt": "^2.13.0",
+    "vue-github-button": "^1.2.0",
     "wordcut": "^0.9.0"
   },
   "devDependencies": {
