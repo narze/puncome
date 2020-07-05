@@ -3,7 +3,7 @@
     <div>
       <!-- <Logo /> -->
       <h1 class="title">
-        Puncome
+        พันคำ
       </h1>
 
       <div>
@@ -11,19 +11,18 @@
       </div>
 
       <div class="my-2">
-        <button @click="check" id="check" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Check</button>
+        <button @click="check" id="check" class="btn-blue">ตรวจสอบ</button>
       </div>
 
-      <div>
-        <textarea v-model="output" name="output" id="output" class="border p-4" cols="50" rows="10"></textarea>
-      </div>
+      <div id="result">{{ resultMessage }}</div>
+      <div id="uncommonWords">{{ uncommonWords }}</div>
 
       <div class="links">
         <a
           href="https://github.com/narze/puncome"
           target="_blank"
           rel="noopener noreferrer"
-          class="button--grey"
+          class="btn-blue"
         >
           GitHub
         </a>
@@ -39,9 +38,13 @@ import words from "@/data/tnc-1k-wordlist"
 export default Vue.extend({
   data() {
     return {
-      input: "คุณสามารถอธิบายเรื่องยากด้วยคำที่ง่ายลงได้หรือไม่",
-      output: "",
+      input: [
+        "คุณสามารถอธิบายเรื่องยากด้วยคำที่ง่ายลงได้หรือไม่",
+        "โดยเราจะตรวจสอบประโยคว่าใช้เพียงหนึ่งพันคำที่ใช้บ่อยที่สุดหรือเปล่า"
+      ].join(" "),
       commonWords: words,
+      resultMessage: "",
+      uncommonWords: "",
     }
   },
   methods: {
@@ -55,12 +58,20 @@ export default Vue.extend({
       let uncommonWords: string[] = []
 
       words.forEach(word => {
+        if (word == " ") return
+
         if (!commonWordsSet.has(word)) {
           uncommonWords.push(word)
         }
       });
 
-      this.output = uncommonWords.join(" ")
+      if (uncommonWords.length) {
+        this.resultMessage = "เอ ยังมีคำที่ใช้ยากอยู่นะ ลองใช้คำที่ง่ายลงอีกหน่อยสิ"
+        this.uncommonWords = `(${uncommonWords.join(", ")})`
+      } else {
+        this.resultMessage = "ดีมาก! คุณใช้แค่หนึ่งพันคำที่ใช้บ่อยที่สุด"
+        this.uncommonWords = ""
+      }
     }
   }
 })
@@ -72,6 +83,14 @@ export default Vue.extend({
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
+.btn-blue {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+}
+
+.btn-blue:hover {
+  @apply bg-blue-700;
+}
+
 .container {
   margin: 0 auto;
   min-height: 100vh;
