@@ -34,20 +34,33 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import words from "@/data/tnc-1k-wordlist"
 
 export default Vue.extend({
   data() {
     return {
       input: "คุณสามารถอธิบายเรื่องยากด้วยคำที่ง่ายลงได้หรือไม่",
       output: "",
+      commonWords: words,
     }
   },
   methods: {
     async check() {
       const host = window.location.origin
       const result = await this.$axios.$get(`${host}/api/wordcut?input=${this.input}`)
-      this.output = result.output
-      console.log(this.output)
+      const words: string[] = result.output.split("|")
+
+      const commonWordsSet = new Set(this.commonWords)
+
+      let uncommonWords: string[] = []
+
+      words.forEach(word => {
+        if (!commonWordsSet.has(word)) {
+          uncommonWords.push(word)
+        }
+      });
+
+      this.output = uncommonWords.join(" ")
     }
   }
 })

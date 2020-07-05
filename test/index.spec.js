@@ -18,11 +18,12 @@ describe('Index', () => {
     expect(wrapper.html()).toContain("Puncome")
   })
 
-  test("cuts words", async () => {
+  test("cuts words then scan with wordlist", async () => {
     const $axios = { $get: () => Promise.resolve({ output: 'ไก่|จิก|เด็ก|ตาย|บน|ปาก|โอ่ง' }) }
     const wrapper = mount(Index, {
       mocks: { $axios }
     })
+    wrapper.setData({ commonWords: ["ไก่", "จิก", "เด็ก", "ปาก"] })
 
     const textArea = wrapper.find("textarea#input")
     expect(textArea.exists()).toBe(true)
@@ -36,6 +37,6 @@ describe('Index', () => {
     await flushPromises()
 
     const output = wrapper.get("textarea#output")
-    expect(output.element.value).toBe("ไก่|จิก|เด็ก|ตาย|บน|ปาก|โอ่ง")
+    expect(output.element.value).toBe("ตาย บน โอ่ง")
   })
 })
